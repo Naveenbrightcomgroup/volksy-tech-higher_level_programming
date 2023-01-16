@@ -1,77 +1,129 @@
 #!/usr/bin/python3
-# -*- coding: utf-8 -*-
 """
-Created on Mon May 25 14:04:30 2020
-@author: Robinson Montes
+A module with a Rectangle that does nothing
 """
 
 
 class Rectangle:
-    """class Rectangle that defines a rectangle figure
-    Attributes:
-        empty
+    """
+    An empty Rectangle class
     """
 
     def __init__(self, width=0, height=0):
         """
-        Init method for Rectangle
-        Attributes:
-            width (int, optional): The width of the rectangle
-            height (int, optional): The height of the rectangle
+        Checks the parameters and initializes some values
+        Args:
+            width (:obj:`int`, optional): The width of the Rectangle.
+            height (:obj:`int`, optional): The height of the Rectangle.
+        """
+
+        self.__check_valid_width(width)
+        self.__check_valid_height(height)
+
         self.width = width
         self.height = height
-        """
-        self.__height = height
-        self.__width = width
-
-    @property
-    def height(self):
-        """
-        Property height to retrieve it
-        Returns:
-            height (int): The height of the rectangle
-        """
-        return self.__height
-
-    @height.setter
-    def height(self, value):
-        """
-        Setter height of the rectangle
-        Attributes:
-            height (int): The height of the rectangle
-        Raises:
-            TypeError: If height is not an integer
-            ValueError: If height is less than 0
-        """
-        if type(value) is not int:
-            raise TypeError("height must be an integer")
-        elif value < 0:
-            raise ValueError("height must be >= 0")
-        else:
-            self.__height = value
 
     @property
     def width(self):
         """
-        Property width to retrieve it
-        Returns:
-            width (int): The width of the rectangle
+        Returns the width of the Rectangle
         """
+
         return self.__width
 
     @width.setter
     def width(self, value):
         """
-        Setter width of the rectangle
-        Attributes:
-            width (int): The width of the rectangle
+        Checks the parameters and set the size of the Rectangle
+        Args:
+            value (int): The width of the Rectangle.
         Raises:
-            TypeError: If width is not an integer
-            ValueError: If width is less than 0
+            TypeError: If `value` type is not `int`.
+            ValueError: If `value` is less than `0`.
         """
-        if type(value) is not int:
-            raise TypeError("width must be an integer")
-        elif value < 0:
-            raise ValueError("width must be >= 0")
-        else:
-            self.__width = value
+
+        self.__check_valid_width(value)
+        self.__width = value
+
+    @property
+    def height(self):
+        """
+        Returns the width of the Rectangle
+        """
+
+        return self.__height
+
+    @height.setter
+    def height(self, value):
+        """
+        Checks the parameters and set the size of the Rectangle
+        Args:
+            value (int): The height of the Rectangle.
+        Raises:
+            TypeError: If `value` type is not `int`.
+            ValueError: If `value` is less than `0`.
+        """
+
+        self.__check_valid_height(value)
+        self.__height = value
+
+    def __check_valid_width(self, width):
+        """
+        Checks if the width is a valid integer
+        Args:
+            width (int): The width of the Rectangle.
+        Raises:
+            TypeError: If `width` type is not `int`.
+            ValueError: If `width` is less than `0`.
+        """
+
+        if self.__check_int_value(width) is False:
+            raise TypeError('width must be an integer')
+
+        if self.__check_positive_value(width) is False:
+            raise ValueError('width must be >= 0')
+
+    def __check_valid_height(self, height):
+        """
+        Checks if the height is a valid integer
+        Args:
+            height (int): The height of the Rectangle.
+        Raises:
+            TypeError: If `height` type is not `int`.
+            ValueError: If `height` is less than `0`.
+        """
+
+        if self.__check_int_value(height) is False:
+            raise TypeError('height must be an integer')
+
+        if self.__check_positive_value(height) is False:
+            raise ValueError('height must be >= 0')
+
+    def __check_int_value(self, value):
+        """
+        Checks if the value is an integer
+        Args:
+            value (int): The number to verify
+        Returns:
+            int: If is a int `True`, `False` otherwise.
+        """
+
+        if type(value) is int:
+            return True
+
+        return False
+
+    def __check_positive_value(self, value):
+        """
+        Checks if the value is a positive integer
+        Args:
+            value (int): The number to verify
+        Returns:
+            int: `True` If value is greater than
+            or equal to 0, `False` otherwise.
+        """
+
+        if value >= 0:
+            return True
+
+        return False
