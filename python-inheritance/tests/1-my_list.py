@@ -1,9 +1,14 @@
 #!/usr/bin/python3
-""" class """
+"""MyList
+"""
+
 
 class MyList(list):
-    """ THIS IS CLASS """
+    """Contains list
+    """
 
     def print_sorted(self):
-        """OBJECT"""
+        """Prints self in sorted format
+        """
+
         print(sorted(self))
