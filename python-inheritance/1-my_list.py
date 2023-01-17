@@ -1,14 +1,16 @@
 #!/usr/bin/python3
-"""MyList
+"""
+This is the Mylist module.
+This module contains the MyList class
 """
 
 
 class MyList(list):
-    """Contains list
     """
-
+    This is the MyList class that inherits from list
+    """
     def print_sorted(self):
-        """Prints self in sorted format
         """
-
+        prints out a sorted list of ints sorted
+        """
         print(sorted(self))
