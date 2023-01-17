@@ -1,15 +1,14 @@
- #!/usr/bin/python3
-"""
-class Mylist
+#!/usr/bin/python3
+"""MyList
 """
 
 
 class MyList(list):
-    """MyList class
+    """Contains list
     """
 
     def print_sorted(self):
-        """print list
+        """Prints self in sorted format
         """
 
         print(sorted(self))
