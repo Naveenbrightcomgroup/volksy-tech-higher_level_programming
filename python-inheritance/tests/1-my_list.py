@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 """class"""
 
-
 class MyList(list):
     """ THIS IS CLASS """
 
