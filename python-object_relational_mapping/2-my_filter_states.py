@@ -1,24 +1,35 @@
 #!/usr/bin/python3
-"""
-This module runs a script to fetch all states table
-in the database provided where name matches a provided value
-This script is succeptible to SQL injection attack
-"""
+"""Display name argument of states table"""
 import MySQLdb
-from sys import argv
+import sys
+
+
+def filter_names():
+    """Takes arguments argv to list from database
+    Only lists with states that matches name argument
+    Arguments:
+        argv[1]: mysql username
+        argv[2]: mysql password
+        argv[3]: database name
+        argv[4]: state name
+    """
+    db = MySQLdb.connect(host="localhost",
+                         port=3306,
+                         user=sys.argv[1],
+                         passwd=sys.argv[2],
+                         db=sys.argv[3])
+
+    cur = db.cursor()
+
+    cur.execute("SELECT * FROM states WHERE BINARY name='{:s}'\
+                ORDER BY id ASC".format(sys.argv[4]))
+    rows = cur.fetchall()
+    for i in rows:
+        print(i)
+
+    cur.close()
+    db.close()
 
 
 if __name__ == "__main__":
-    if len(argv) == 5:
-        db = MySQLdb.connect(host='localhost', user=argv[1], passwd=argv[2],
-                             db=argv[3], charset='utf8')
-        cur = db.cursor()
-        cur.execute("SELECT * FROM states WHERE name = '{:s}' ORDER BY id"
-                    .format(argv[4]))
-        states = cur.fetchall()
-        for state in states:
-            if state[1] == argv[4]:
-                print(state)
-        cur.close()
-        db.close()
-
+    filter_names()
