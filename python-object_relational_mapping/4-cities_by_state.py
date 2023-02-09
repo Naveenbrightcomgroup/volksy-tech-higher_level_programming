@@ -30,5 +30,7 @@ def list_cities():
     cur.close()
     db.close()
 
+
+
 if __name__ == "__main__":
     list_cities()
